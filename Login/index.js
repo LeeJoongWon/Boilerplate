@@ -2,20 +2,22 @@ const express = require('express')
 const app = express()
 const port = 5000
 
+const config = require('./config/key');
+
 const { User } = require("./models/User");
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
-const uri = "mongodb+srv://JoongWon:1234@boilerplate-login.frbz2.mongodb.net/Boilerplate-Login?retryWrites=true&w=majority";
+
 const mongoose = require('mongoose')
-mongoose.connect(uri)
+mongoose.connect(config.mongoURI)
  .then(() => console.log('MongoDB Connected...'))
  .catch(err => console.log(err))
 
 
 app.get('/', (req, res) => {
-  res.send('Hello World! 안녕asd')
+  res.send('Hello World! 안녕 노드몬')
 })
 
 app.post('/register', (req,res) => {
